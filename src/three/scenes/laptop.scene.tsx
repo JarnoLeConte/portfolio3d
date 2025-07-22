@@ -5,20 +5,25 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense, useMemo, useState } from "react";
 import LoremIpsum from "~/components/lorem-ipsum";
 import Video from "~/components/video";
+import { Page } from "~/types";
 import { Laptop } from "../models/laptop.model";
+import { useMainStore } from "~/store";
 
 export function LaptopScene() {
-  const [page, setPage] = useState<string | null>(null);
+  const pages = useMainStore((state) => state.pages);
+  const pageIndex = useMainStore((state) => state.pageIndex);
+
+  const page = pages[pageIndex];
 
   const displayContent = useMemo(() => {
     switch (page) {
-      case "rxmarbles":
+      case Page.RXMARBLES:
         return <Video src="/videos/rxmarbles.mov" />;
-      case "shimejis":
+      case Page.SHIMEJIS:
         return <Video src="/videos/shimejis.mov" />;
-      case "anime.coach":
+      case Page.ANIME_COACH:
         return <Video src="/videos/anime.coach.mov" />;
-      case "flipperkast":
+      case Page.FLIPPERKAST:
         return <Video src="/videos/flipperkast.mov" />;
       default:
         return <LoremIpsum />;

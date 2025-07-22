@@ -55,6 +55,7 @@ export function Laptop({ displayContent }: { displayContent: ReactNode }) {
               position={[0, 0.05, -0.09]}
               transform
               occlude
+              zIndexRange={[10, 0]}
             >
               <div
                 className="wrapper"
