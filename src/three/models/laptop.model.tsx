@@ -1,5 +1,5 @@
 import { Html, useGLTF } from "@react-three/drei";
-import { useRef } from "react";
+import { ReactNode, useRef } from "react";
 import * as THREE from "three";
 import type { GLTF } from "three-stdlib";
 
@@ -26,7 +26,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function Laptop() {
+export function Laptop({ displayContent }: { displayContent: ReactNode }) {
   const group = useRef<THREE.Mesh>(null);
 
   // Load model
@@ -60,7 +60,7 @@ export function Laptop() {
                 className="wrapper"
                 onPointerDown={(e) => e.stopPropagation()}
               >
-                {/* <HeroPage /> */}
+                {displayContent}
               </div>
             </Html>
           </mesh>

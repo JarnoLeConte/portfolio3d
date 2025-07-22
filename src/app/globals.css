@@ -24,3 +24,21 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.content {
+  width: 334px;
+  height: 216px;
+  background: #f0f0f0;
+  border-radius: 3px 3px 0 0;
+  /* overflow-y: auto; */
+  overflow: hidden;
+  padding: 0;
+}
+
+.wrapper {
+  /* padding: 5px; */
+  width: 668px; /* 668*2= 1336px */
+  height: 432px; /* 432*2= 864px */
+  transform: scale(0.5);
+  transform-origin: top left;
+}
