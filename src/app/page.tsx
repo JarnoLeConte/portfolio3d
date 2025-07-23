@@ -1,7 +1,8 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { pages } from "~/config";
 import { useMainStore } from "~/store";
 import { PortfolioScene } from "~/three/scenes/portfolio.scene";
 
@@ -13,7 +14,12 @@ export default function Home() {
   );
   const setScrollTop = useMainStore((state) => state.setScrollTop);
   const setMousePosition = useMainStore((state) => state.setMousePosition);
-  const pages = useMainStore((state) => state.pages);
+  const pageIndex = useMainStore((state) => state.pageIndex);
+
+  const [objectUrls, setObjectUrls] = useState<Record<string, string>>({});
+
+  const page = pages[pageIndex];
+  const videoSource = objectUrls[page?.page];
 
   const onScroll = (e: any) => {
     setScrollAreaHeight(e.target?.offsetHeight ?? 0);
@@ -21,6 +27,32 @@ export default function Home() {
   };
 
   useEffect(() => void onScroll({ target: scrollArea.current }), []);
+
+  // Preload video sources
+  useEffect(() => {
+    const objectUrls: Record<string, string> = {};
+
+    (async () => {
+      for (const { page, videoSource } of pages) {
+        if (videoSource) {
+          await fetch(videoSource)
+            .then((res) => res.blob())
+            .then((blob) => {
+              // Create an object URL for the video blob
+              // to make sure the video will be rendered from memory
+              // and will not load parts while scrubbing because browser
+              // doesn't always use the loaded video source otherwise.
+              objectUrls[page] = URL.createObjectURL(blob);
+              setObjectUrls((prev) => ({ ...objectUrls }));
+            });
+        }
+      }
+    })();
+
+    return () => {
+      Object.values(objectUrls).forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, []);
 
   return (
     <>
@@ -37,11 +69,11 @@ export default function Home() {
           }
         >
           {[...pages, "last-page-empty"].map((_, page) => (
-            <div className="w-full h-full" key={page} />
+            <div className="w-full h-[300%]" key={page} />
           ))}
         </div>
         <Canvas>
-          <PortfolioScene />
+          <PortfolioScene videoSource={videoSource} />
         </Canvas>
       </div>
     </>

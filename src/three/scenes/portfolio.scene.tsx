@@ -6,29 +6,13 @@ import {
   OrbitControls,
   PerspectiveCamera,
 } from "@react-three/drei";
-import { Suspense, useMemo } from "react";
-import { useMainStore } from "~/store";
-import { Page } from "~/types";
+import { Suspense } from "react";
 import { Laptop } from "../models/laptop.model";
+import { getPublicEnv } from "~/lib/env";
 
-export function PortfolioScene() {
-  const pages = useMainStore((state) => state.pages);
-  const pageIndex = useMainStore((state) => state.pageIndex);
-
-  const page = pages[pageIndex];
-
-  const videoSource = useMemo(() => {
-    switch (page) {
-      case Page.RXMARBLES:
-        return "/videos/rxmarbles.mov";
-      case Page.SHIMEJIS:
-        return "/videos/shimejis.mov";
-      case Page.ANIME_COACH:
-        return "/videos/anime.coach.mov";
-      case Page.FLIPPERKAST:
-        return "/videos/flipperkast.mov";
-    }
-  }, [page]);
+export function PortfolioScene({ videoSource }: { videoSource?: string }) {
+  const { assetsUrl } = getPublicEnv();
+  const hdrMapUrl = assetsUrl + "/potsdamer_platz_1k.hdr";
 
   return (
     <>
@@ -38,7 +22,7 @@ export function PortfolioScene() {
         <group rotation={[0, Math.PI, 0]} position={[0, -2.5, 0]}>
           <Laptop videoSource={videoSource} />
         </group>
-        <Environment preset="city" />
+        <Environment files={[hdrMapUrl]} />
       </Suspense>
       <ContactShadows position={[0, -4.5, 0]} scale={20} blur={2} far={4.5} />
       <OrbitControls

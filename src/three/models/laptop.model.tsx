@@ -1,7 +1,8 @@
-import { useGLTF, useVideoTexture } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { Suspense, useRef } from "react";
 import * as THREE from "three";
 import type { GLTF } from "three-stdlib";
+import { ScreenMaterial } from "../materials/screen.material";
 
 /**
  * Custom type for the GLTF model result.
@@ -27,7 +28,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function Laptop({ videoSource }: { videoSource: string }) {
+export function Laptop({ videoSource }: { videoSource?: string }) {
   const group = useRef<THREE.Mesh>(null);
 
   // Load model
@@ -53,7 +54,7 @@ export function Laptop({ videoSource }: { videoSource: string }) {
             geometry={nodes["Cube008_2"].geometry}
           >
             <Suspense fallback={null}>
-              <ScreenMaterial videoSource={videoSource} />
+              {videoSource && <ScreenMaterial videoSource={videoSource} />}
             </Suspense>
           </mesh>
         </group>
@@ -80,11 +81,4 @@ export function Laptop({ videoSource }: { videoSource: string }) {
       />
     </group>
   );
-}
-
-function ScreenMaterial({ videoSource }: { videoSource: string }) {
-  const texture = useVideoTexture(videoSource);
-  texture.flipY = false;
-
-  return <meshBasicMaterial map={texture} toneMapped={false} />;
 }
