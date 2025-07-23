@@ -1,5 +1,5 @@
-import { Html, useGLTF } from "@react-three/drei";
-import { ReactNode, useRef } from "react";
+import { useGLTF, useVideoTexture } from "@react-three/drei";
+import { Suspense, useRef } from "react";
 import * as THREE from "three";
 import type { GLTF } from "three-stdlib";
 
@@ -23,10 +23,11 @@ type GLTFResult = GLTF & {
     trackpad: THREE.MeshStandardMaterial;
     keys: THREE.MeshStandardMaterial;
     "matte.001": THREE.MeshStandardMaterial;
+    "screen.001": THREE.MeshStandardMaterial;
   };
 };
 
-export function Laptop({ displayContent }: { displayContent: ReactNode }) {
+export function Laptop({ videoSource }: { videoSource: string }) {
   const group = useRef<THREE.Mesh>(null);
 
   // Load model
@@ -47,23 +48,13 @@ export function Laptop({ displayContent }: { displayContent: ReactNode }) {
             material={materials["matte.001"]}
             geometry={nodes["Cube008_1"].geometry}
           />
-          <mesh geometry={nodes["Cube008_2"].geometry}>
-            {/* Drei's HTML component can "hide behind" canvas geometry */}
-            <Html
-              className="content"
-              rotation-x={-Math.PI / 2}
-              position={[0, 0.05, -0.09]}
-              transform
-              occlude
-              zIndexRange={[10, 0]}
-            >
-              <div
-                className="wrapper"
-                onPointerDown={(e) => e.stopPropagation()}
-              >
-                {displayContent}
-              </div>
-            </Html>
+          <mesh
+            material={materials["screen.001"]} // TODO: adjust Loading screen material
+            geometry={nodes["Cube008_2"].geometry}
+          >
+            <Suspense fallback={null}>
+              <ScreenMaterial videoSource={videoSource} />
+            </Suspense>
           </mesh>
         </group>
       </group>
@@ -89,4 +80,11 @@ export function Laptop({ displayContent }: { displayContent: ReactNode }) {
       />
     </group>
   );
+}
+
+function ScreenMaterial({ videoSource }: { videoSource: string }) {
+  const texture = useVideoTexture(videoSource);
+  texture.flipY = false;
+
+  return <meshBasicMaterial map={texture} toneMapped={false} />;
 }

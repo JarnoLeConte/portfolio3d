@@ -1,8 +1,9 @@
 "use client";
 
+import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { useMainStore } from "~/store";
-import { LaptopScene } from "~/three/scenes/laptop.scene";
+import { PortfolioScene } from "~/three/scenes/portfolio.scene";
 
 export default function Home() {
   const scrollArea = useRef<HTMLDivElement>(null);
@@ -22,25 +23,27 @@ export default function Home() {
   useEffect(() => void onScroll({ target: scrollArea.current }), []);
 
   return (
-    <div className="w-screen h-dvh overflow-hidden font-[family-name:var(--font-geist-sans)]">
-      <div
-        className="absolute top-0 left-0 w-full h-full overflow-auto z-20"
-        ref={scrollArea}
-        onScroll={onScroll}
-        onPointerMove={(e) =>
-          setMousePosition([
-            (e.clientX / window.innerWidth) * 2 - 1,
-            (e.clientY / window.innerHeight) * 2 - 1,
-          ])
-        }
-      >
-        {pages.map((_, page) => (
-          <div className="w-screen h-dvh" key={page} />
-        ))}
-        {/* empty page at the end to keep track of scrolling */}
-        <div className="w-screen h-dvh" />
+    <>
+      <div className="fixed top-0 left-0 w-full h-dvh overflow-hidden font-[family-name:var(--font-geist-sans)]">
+        <div
+          className="absolute top-0 left-0 w-full h-full overflow-auto z-20"
+          ref={scrollArea}
+          onScroll={onScroll}
+          onPointerMove={(e) =>
+            setMousePosition([
+              (e.clientX / window.innerWidth) * 2 - 1,
+              (e.clientY / window.innerHeight) * 2 - 1,
+            ])
+          }
+        >
+          {[...pages, "last-page-empty"].map((_, page) => (
+            <div className="w-full h-full" key={page} />
+          ))}
+        </div>
+        <Canvas>
+          <PortfolioScene />
+        </Canvas>
       </div>
-      <LaptopScene />
-    </div>
+    </>
   );
 }
