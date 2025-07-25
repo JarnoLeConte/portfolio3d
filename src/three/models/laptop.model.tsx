@@ -1,4 +1,4 @@
-import { animated, SpringValue } from "@react-spring/three";
+import { animated, Interpolation, SpringValue } from "@react-spring/three";
 import { useGLTF } from "@react-three/drei";
 import { Suspense, useRef } from "react";
 import * as THREE from "three";
@@ -35,7 +35,7 @@ export function Laptop({
   videoSource,
   imageSource,
 }: {
-  hinge: SpringValue<number>;
+  hinge: SpringValue<number> | Interpolation<0 | 1, number>;
   videoSource?: string;
   imageSource?: string;
 }) {

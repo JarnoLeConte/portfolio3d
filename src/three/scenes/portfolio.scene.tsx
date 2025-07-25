@@ -1,15 +1,14 @@
 "use client";
 
-import { useSpringValue } from "@react-spring/three";
 import {
   ContactShadows,
   Environment,
   OrbitControls,
   PerspectiveCamera,
 } from "@react-three/drei";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
+import { useSpringValueFromStore } from "~/hooks/use-spring-value-form-store";
 import { getPublicEnv } from "~/lib/env";
-import { useMainStore } from "~/store";
 import { Laptop } from "../models/laptop.model";
 
 export function PortfolioScene({
@@ -22,21 +21,14 @@ export function PortfolioScene({
   const { assetsUrl } = getPublicEnv();
   const hdrMapUrl = assetsUrl + "/potsdamer_platz_1k.hdr";
 
-  // Create a spring value for the hinge
-  const hinge = useSpringValue(0);
+  // Get scrollTop position as spring value to avoid re-renders
+  const scroll = useSpringValueFromStore((state) => state.scrollTop);
 
   // Update the hinge spring based on scroll position (first 200px)
   // Setting an value between 0 and 1
-  // This avoids React re-renders by updating the spring directly
-  useEffect(
-    () =>
-      useMainStore.subscribe(({ scrollTop }) => {
-        const clamped = Math.min(Math.max(scrollTop, 0), 200);
-        const nextHinge = clamped / 200;
-        hinge.set(nextHinge);
-      }),
-    []
-  );
+  const hinge = scroll
+    .to([0, 200], [0, 1])
+    .to((v) => Math.max(0, Math.min(1, v)));
 
   return (
     <>

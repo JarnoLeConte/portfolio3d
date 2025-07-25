@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { pages } from "./config";
 import { DynamicPage } from "./types";
 
-interface MainStore {
+export interface MainStore {
   pages: DynamicPage[];
   pageIndex: number;
   pageProgress: number;
