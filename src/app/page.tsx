@@ -68,9 +68,7 @@ export default function Home() {
             ])
           }
         >
-          {[...pages, "last-page-empty"].map((_, page) => (
-            <div className="w-full h-[300%]" key={page} />
-          ))}
+          <div className="w-full h-[1400vh]" />
         </div>
         <Canvas>
           <PortfolioScene videoSource={videoSource} />

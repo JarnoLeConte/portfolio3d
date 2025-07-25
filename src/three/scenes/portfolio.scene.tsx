@@ -9,20 +9,28 @@ import {
 import { Suspense, useEffect, useState } from "react";
 import { Laptop } from "../models/laptop.model";
 import { getPublicEnv } from "~/lib/env";
+import { useSpringValue } from "@react-spring/three";
+import { useMainStore } from "~/store";
 
 export function PortfolioScene({ videoSource }: { videoSource?: string }) {
   const { assetsUrl } = getPublicEnv();
   const hdrMapUrl = assetsUrl + "/potsdamer_platz_1k.hdr";
 
-  // This flag controls open state, alternates between true & false
-  const [open, setOpen] = useState(false);
+  // Create a spring value for the hinge
+  const hinge = useSpringValue(0);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setOpen(true);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
+  // Update the hinge spring based on scroll position (first 200px)
+  // Setting an value between 0 and 1
+  // This avoids React re-renders by updating the spring directly
+  useEffect(
+    () =>
+      useMainStore.subscribe(({ scrollTop }) => {
+        const clamped = Math.min(Math.max(scrollTop, 0), 200);
+        const nextHinge = clamped / 200;
+        hinge.set(nextHinge);
+      }),
+    []
+  );
 
   return (
     <>
@@ -30,7 +38,7 @@ export function PortfolioScene({ videoSource }: { videoSource?: string }) {
       <pointLight position={[10, 10, 10]} intensity={1.5} />
       <Suspense fallback={null}>
         <group rotation={[0, Math.PI, 0]} position={[0, -2.5, 0]}>
-          <Laptop open={open} videoSource={videoSource} />
+          <Laptop hinge={hinge} videoSource={videoSource} />
         </group>
         <Environment files={[hdrMapUrl]} />
       </Suspense>
