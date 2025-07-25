@@ -21,6 +21,7 @@ export default function Home() {
 
   const page = pages[pageIndex];
   const videoSource = objectUrls[page?.page];
+  const imageSource = page?.imageSource;
 
   const onScroll = (e: any) => {
     setScrollTop(e.target?.scrollTop ?? 0);
@@ -85,7 +86,7 @@ export default function Home() {
           />
         </div>
         <Canvas>
-          <PortfolioScene videoSource={videoSource} />
+          <PortfolioScene videoSource={videoSource} imageSource={imageSource} />
         </Canvas>
       </div>
     </>

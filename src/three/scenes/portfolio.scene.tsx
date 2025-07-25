@@ -1,18 +1,24 @@
 "use client";
 
+import { useSpringValue } from "@react-spring/three";
 import {
   ContactShadows,
   Environment,
   OrbitControls,
   PerspectiveCamera,
 } from "@react-three/drei";
-import { Suspense, useEffect, useState } from "react";
-import { Laptop } from "../models/laptop.model";
+import { Suspense, useEffect } from "react";
 import { getPublicEnv } from "~/lib/env";
-import { useSpringValue } from "@react-spring/three";
 import { useMainStore } from "~/store";
+import { Laptop } from "../models/laptop.model";
 
-export function PortfolioScene({ videoSource }: { videoSource?: string }) {
+export function PortfolioScene({
+  videoSource,
+  imageSource,
+}: {
+  videoSource?: string;
+  imageSource?: string;
+}) {
   const { assetsUrl } = getPublicEnv();
   const hdrMapUrl = assetsUrl + "/potsdamer_platz_1k.hdr";
 
@@ -38,7 +44,11 @@ export function PortfolioScene({ videoSource }: { videoSource?: string }) {
       <pointLight position={[10, 10, 10]} intensity={1.5} />
       <Suspense fallback={null}>
         <group rotation={[0, Math.PI, 0]} position={[0, -2.5, 0]}>
-          <Laptop hinge={hinge} videoSource={videoSource} />
+          <Laptop
+            hinge={hinge}
+            videoSource={videoSource}
+            imageSource={imageSource}
+          />
         </group>
         <Environment files={[hdrMapUrl]} />
       </Suspense>

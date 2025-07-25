@@ -1,7 +1,7 @@
 import { useVideoTexture } from "@react-three/drei";
 import { useMainStore } from "~/store";
 
-export function ScreenMaterial({ videoSource }: { videoSource: string }) {
+export function VideoMaterial({ videoSource }: { videoSource: string }) {
   const pageProgress = useMainStore((state) => state.pageProgress);
 
   // Create a video texture
@@ -18,5 +18,5 @@ export function ScreenMaterial({ videoSource }: { videoSource: string }) {
   // Scrubbing the video when scroll position changes
   texture.image.currentTime = pageProgress * (texture.image.duration || 0);
 
-  return texture && <meshBasicMaterial map={texture} toneMapped={false} />;
+  return <meshBasicMaterial map={texture} toneMapped={false} />;
 }
