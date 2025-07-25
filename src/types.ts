@@ -12,6 +12,7 @@ export type StaticPage = {
   videoSource?: string;
   imageSource?: string;
   title: string;
+  description: string;
 };
 
 /**

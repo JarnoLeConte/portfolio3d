@@ -13,6 +13,7 @@ import { useMainStore } from "~/store";
 import { PageTitle } from "../components/page-title";
 import { Laptop } from "../models/laptop.model";
 import { WelcomeText } from "../components/welcome-text";
+import { PageDescription } from "../components/page-description";
 
 export function PortfolioScene({
   videoSource,
@@ -44,6 +45,11 @@ export function PortfolioScene({
         <group position-y={4.5}>
           {pages.map((page) => (
             <PageTitle key={page.id} page={page} />
+          ))}
+        </group>
+        <group position-y={3.9}>
+          {pages.map((page) => (
+            <PageDescription key={page.id} page={page} />
           ))}
         </group>
         <group rotation={[0, Math.PI, 0]} position={[0, -2.5, 0]}>

@@ -5,7 +5,7 @@ import { DynamicPage } from "~/types";
 
 const AnimatedText = animated(Text);
 
-export function PageTitle({ page }: { page: DynamicPage }) {
+export function PageDescription({ page }: { page: DynamicPage }) {
   const scroll = useSpringValueFromStore((state) => state.scrollTop);
 
   const range = [
@@ -32,12 +32,12 @@ export function PageTitle({ page }: { page: DynamicPage }) {
       rotation-y={Math.PI}
       position-y={y}
       scale={scale}
-      color="#777"
+      color="#555"
       fillOpacity={opacity}
       material-depthWrite={false}
-      fontSize={0.48}
+      fontSize={0.2}
     >
-      {page.title}
+      {page.description}
     </AnimatedText>
   );
 }

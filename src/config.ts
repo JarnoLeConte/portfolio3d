@@ -9,30 +9,36 @@ const PAGES: StaticPage[] = [
     imageSource: "/images/wallpaper.jpg",
     height: 400,
     title: "Jarno Le Conté",
+    description: "Creative Developer",
   },
   {
     id: PageId.Shimejis,
     videoSource: assetsUrl + "/shimejis.mp4",
     height: 3000,
-    title: "Shimejis",
+    title: "Shimeji Browser Extension",
+    description: "Playful characters interact with your browser",
   },
   {
     id: PageId.Flipperkast,
     videoSource: assetsUrl + "/flipperkast.mp4",
     height: 3000,
-    title: "Flipperkast",
+    title: "Pinball",
+    description: "Game created for Sjoet.xyz",
   },
   {
     id: PageId.RxMarbles,
     videoSource: assetsUrl + "/rxmarbles.mp4",
     height: 3000,
-    title: "Observables",
+    title: "RxMarbles",
+    description: "Visualisation of RxJS Observables",
   },
   {
     id: PageId.AnimeCoach,
     videoSource: assetsUrl + "/anime.coach.mp4",
     height: 3000,
-    title: "AI Neural Network",
+    title: "Anime Coach",
+    description:
+      "Custom built AI Neural Network trained for Anime recommendations",
   },
 ];
 
