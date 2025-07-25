@@ -26,13 +26,13 @@ const PAGES: StaticPage[] = [
     id: PageId.RxMarbles,
     videoSource: assetsUrl + "/rxmarbles.mp4",
     height: 3000,
-    title: "RxMarbles",
+    title: "Observables",
   },
   {
     id: PageId.AnimeCoach,
     videoSource: assetsUrl + "/anime.coach.mp4",
     height: 3000,
-    title: "Anime Coach",
+    title: "AI Neural Network",
   },
 ];
 

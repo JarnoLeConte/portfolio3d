@@ -9,7 +9,10 @@ import {
 import { Suspense } from "react";
 import { useSpringValueFromStore } from "~/hooks/use-spring-value-form-store";
 import { getPublicEnv } from "~/lib/env";
+import { useMainStore } from "~/store";
+import { PageTitle } from "../components/page-title";
 import { Laptop } from "../models/laptop.model";
+import { WelcomeText } from "../components/welcome-text";
 
 export function PortfolioScene({
   videoSource,
@@ -20,6 +23,8 @@ export function PortfolioScene({
 }) {
   const { assetsUrl } = getPublicEnv();
   const hdrMapUrl = assetsUrl + "/potsdamer_platz_1k.hdr";
+
+  const pages = useMainStore((state) => state.pages);
 
   // Get scrollTop position as spring value to avoid re-renders
   const scroll = useSpringValueFromStore((state) => state.scrollTop);
@@ -35,6 +40,12 @@ export function PortfolioScene({
       <PerspectiveCamera makeDefault position={[0, 0, -20]} fov={35} />
       <pointLight position={[10, 10, 10]} intensity={1.5} />
       <Suspense fallback={null}>
+        <WelcomeText />
+        <group position-y={4.5}>
+          {pages.map((page) => (
+            <PageTitle key={page.id} page={page} />
+          ))}
+        </group>
         <group rotation={[0, Math.PI, 0]} position={[0, -2.5, 0]}>
           <Laptop
             hinge={hinge}
