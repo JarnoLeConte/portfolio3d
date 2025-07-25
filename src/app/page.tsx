@@ -9,12 +9,13 @@ import { PortfolioScene } from "~/three/scenes/portfolio.scene";
 export default function Home() {
   const scrollArea = useRef<HTMLDivElement>(null);
 
-  const setScrollAreaHeight = useMainStore(
-    (state) => state.setScrollAreaHeight
-  );
   const setScrollTop = useMainStore((state) => state.setScrollTop);
   const setMousePosition = useMainStore((state) => state.setMousePosition);
   const pageIndex = useMainStore((state) => state.pageIndex);
+  const totalScrollLength = useMainStore((state) => state.totalScrollLength);
+  const windowSize = useMainStore((state) => state.windowSize);
+  const setWindowSize = useMainStore((state) => state.setWindowSize);
+  const totalScrollHeight = totalScrollLength + windowSize.height - 1;
 
   const [objectUrls, setObjectUrls] = useState<Record<string, string>>({});
 
@@ -22,11 +23,21 @@ export default function Home() {
   const videoSource = objectUrls[page?.page];
 
   const onScroll = (e: any) => {
-    setScrollAreaHeight(e.target?.offsetHeight ?? 0);
     setScrollTop(e.target?.scrollTop ?? 0);
   };
 
+  // initialisation scroll position
   useEffect(() => void onScroll({ target: scrollArea.current }), []);
+
+  // initialisation window size
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize(window.innerWidth, window.innerHeight);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Preload video sources
   useEffect(() => {
@@ -68,7 +79,10 @@ export default function Home() {
             ])
           }
         >
-          <div className="w-full h-[1400vh]" />
+          <div
+            className="w-full"
+            style={{ height: `${totalScrollHeight}px` }}
+          />
         </div>
         <Canvas>
           <PortfolioScene videoSource={videoSource} />
