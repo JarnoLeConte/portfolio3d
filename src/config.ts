@@ -1,36 +1,58 @@
 import { getPublicEnv } from "./lib/env";
+import { DynamicPage, PageId, StaticPage } from "./types";
 
 const { assetsUrl } = getPublicEnv();
 
-export const pages = [
+const PAGES: StaticPage[] = [
   {
-    page: "login" as const,
-    videoSource: undefined,
+    id: PageId.Login,
     imageSource: "/images/wallpaper.jpg",
-    scrollDuration: 4,
+    height: 400,
+    title: "Jarno Le Conté",
   },
   {
-    page: "shimejis" as const,
+    id: PageId.Shimejis,
     videoSource: assetsUrl + "/shimejis.mp4",
-    imageSource: undefined,
-    scrollDuration: 30,
+    height: 3000,
+    title: "Shimejis",
   },
   {
-    page: "flipperkast" as const,
+    id: PageId.Flipperkast,
     videoSource: assetsUrl + "/flipperkast.mp4",
-    imageSource: undefined,
-    scrollDuration: 30,
+    height: 3000,
+    title: "Flipperkast",
   },
   {
-    page: "rxmarbles" as const,
+    id: PageId.RxMarbles,
     videoSource: assetsUrl + "/rxmarbles.mp4",
-    imageSource: undefined,
-    scrollDuration: 30,
+    height: 3000,
+    title: "RxMarbles",
   },
   {
-    page: "anime.coach" as const,
+    id: PageId.AnimeCoach,
     videoSource: assetsUrl + "/anime.coach.mp4",
-    imageSource: undefined,
-    scrollDuration: 30,
+    height: 3000,
+    title: "Anime Coach",
   },
-] as const;
+];
+
+const createDynamicPages = (pages: StaticPage[]): DynamicPage[] => {
+  let top = 0;
+
+  return pages.map((page, index) => {
+    const bottom = top + page.height;
+
+    const dynamicPage: DynamicPage = {
+      ...page,
+      top,
+      bottom,
+      index,
+    };
+
+    top += page.height;
+
+    return dynamicPage;
+  });
+};
+
+export const pages = createDynamicPages(PAGES);

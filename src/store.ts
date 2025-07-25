@@ -1,14 +1,9 @@
 import { create } from "zustand";
 import { pages } from "./config";
-
-const PIXELS_PER_SECOND = 100;
-
-const totalScrollLength = pages.reduce((total, { scrollDuration }) => {
-  return total + scrollDuration * PIXELS_PER_SECOND;
-}, 0);
+import { DynamicPage } from "./types";
 
 interface MainStore {
-  pages: typeof pages;
+  pages: DynamicPage[];
   pageIndex: number;
   pageProgress: number;
   totalScrollLength: number;
@@ -21,28 +16,22 @@ interface MainStore {
 }
 
 export const useMainStore = create<MainStore>((set) => ({
-  pages: pages,
+  pages,
   pageIndex: 0,
   pageProgress: 0,
-  totalScrollLength,
+  totalScrollLength: pages[pages.length - 1].bottom,
   scrollTop: 0,
   setScrollTop: (scrollTop: number) => {
     set(({ pages }) => {
-      let pageTop = 0;
-      let pageHeight = 0;
+      const page = pages.find(
+        ({ top, bottom }) => scrollTop >= top && scrollTop < bottom
+      );
 
-      // Find the current page index based on scrollTop
-      const pageIndex = pages.findIndex(({ scrollDuration }) => {
-        pageHeight = scrollDuration * PIXELS_PER_SECOND;
-        if (scrollTop >= pageTop && scrollTop < pageTop + pageHeight) {
-          return true;
-        } else {
-          pageTop += pageHeight;
-        }
-      });
+      if (!page) return {};
 
       // Keep track of the progress [0-1] of scrolling to the current page
-      const pageProgress = (scrollTop - pageTop) / pageHeight;
+      const pageProgress = (scrollTop - page.top) / page.height;
+      const pageIndex = page.index;
 
       return { scrollTop, pageIndex, pageProgress };
     });

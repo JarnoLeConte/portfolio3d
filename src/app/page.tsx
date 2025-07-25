@@ -15,12 +15,12 @@ export default function Home() {
   const totalScrollLength = useMainStore((state) => state.totalScrollLength);
   const windowSize = useMainStore((state) => state.windowSize);
   const setWindowSize = useMainStore((state) => state.setWindowSize);
-  const totalScrollHeight = totalScrollLength + windowSize.height - 1;
+  const totalScrollAreaHeight = totalScrollLength + windowSize.height - 1;
 
   const [objectUrls, setObjectUrls] = useState<Record<string, string>>({});
 
   const page = pages[pageIndex];
-  const videoSource = objectUrls[page?.page];
+  const videoSource = objectUrls[page?.id];
   const imageSource = page?.imageSource;
 
   const onScroll = (e: any) => {
@@ -45,16 +45,16 @@ export default function Home() {
     const objectUrls: Record<string, string> = {};
 
     (async () => {
-      for (const { page, videoSource } of pages) {
-        if (videoSource) {
-          await fetch(videoSource)
+      for (const page of pages) {
+        if (page.videoSource) {
+          await fetch(page.videoSource)
             .then((res) => res.blob())
             .then((blob) => {
               // Create an object URL for the video blob
               // to make sure the video will be rendered from memory
               // and will not load parts while scrubbing because browser
               // doesn't always use the loaded video source otherwise.
-              objectUrls[page] = URL.createObjectURL(blob);
+              objectUrls[page.id] = URL.createObjectURL(blob);
               setObjectUrls((prev) => ({ ...objectUrls }));
             });
         }
@@ -82,7 +82,7 @@ export default function Home() {
         >
           <div
             className="w-full"
-            style={{ height: `${totalScrollHeight}px` }}
+            style={{ height: `${totalScrollAreaHeight}px` }}
           />
         </div>
         <Canvas>
