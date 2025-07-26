@@ -35,7 +35,7 @@ export function Laptop({
   videoSource,
   imageSource,
 }: {
-  hinge: SpringValue<number> | Interpolation<0 | 1, number>;
+  hinge: SpringValue<number> | Interpolation<number>;
   videoSource?: string;
   imageSource?: string;
 }) {

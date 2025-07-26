@@ -9,8 +9,8 @@ export function ScrollHint() {
 
   const { opacity } = useSpring({
     opacity: scroll
-      .to([0, 500], [1, 0.6])
-      .to((v) => Math.max(0.6, Math.min(1, v))),
+      .to([0, 500], [1, 0.3])
+      .to((v) => Math.max(0.3, Math.min(1, v))),
   });
 
   return (

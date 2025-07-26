@@ -34,12 +34,12 @@ export function PortfolioScene({
   // Update the hinge spring based on scroll position (first 200px)
   // Setting an value between 0 and 1
   const hinge = scroll
-    .to([0, 500], [0.0, 1])
+    .to([0, 500], [0.3, 1])
     .to((v) => Math.max(0, Math.min(1, v)));
 
   return (
     <>
-      <PerspectiveCamera makeDefault position={[0, 0, -20]} fov={35} />
+      <PerspectiveCamera makeDefault position={[0, 0, -22]} fov={35} />
       <pointLight position={[10, 10, 10]} intensity={1.5} color="#f0f0f0" />
       <Suspense fallback={null}>
         <WelcomeText />

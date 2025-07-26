@@ -9,8 +9,8 @@ export function PageTitle({ page }: { page: DynamicPage }) {
   const scroll = useSpringValueFromStore((state) => state.scrollTop);
 
   const range = [
-    page.top - 0,
-    page.top + 200,
+    page.top - 100,
+    page.top + 100,
     page.bottom - 0,
     page.bottom + 200,
   ];

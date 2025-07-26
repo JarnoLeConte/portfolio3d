@@ -12,15 +12,15 @@ export function WelcomeText() {
   });
 
   return (
-    <>
+    <group position-y={3}>
       <AnimatedText
         rotation-y={Math.PI}
         position-z={2}
         fillOpacity={opacity}
         material-depthWrite={false}
-        fontSize={1}
+        fontSize={0.9}
       >
-        Portfolio
+        Creative Developer
       </AnimatedText>
       <AnimatedText
         rotation-y={Math.PI}
@@ -30,8 +30,8 @@ export function WelcomeText() {
         material-depthWrite={false}
         fontSize={0.3}
       >
-        Jarno Le Conté
+        Projects by Jarno Le Conté
       </AnimatedText>
-    </>
+    </group>
   );
 }
