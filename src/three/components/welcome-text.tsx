@@ -8,7 +8,7 @@ export function WelcomeText() {
   const scroll = useSpringValueFromStore((state) => state.scrollTop);
 
   const { opacity } = useSpring({
-    opacity: scroll.to([0, 100], [1, 0]).to((v) => Math.max(0, Math.min(1, v))),
+    opacity: scroll.to([0, 70], [1, 0]).to((v) => Math.max(0, Math.min(1, v))),
   });
 
   return (

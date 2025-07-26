@@ -12,9 +12,9 @@ import { getPublicEnv } from "~/lib/env";
 import { useMainStore } from "~/store";
 import { PageDescription } from "../components/page-description";
 import { PageTitle } from "../components/page-title";
+import { ScrollHint } from "../components/scroll-hint";
 import { WelcomeText } from "../components/welcome-text";
 import { Laptop } from "../models/laptop.model";
-import { ScrollHint } from "../components/scroll-hint";
 
 export function PortfolioScene({
   videoSource,
@@ -40,7 +40,7 @@ export function PortfolioScene({
   return (
     <>
       <PerspectiveCamera makeDefault position={[0, 0, -20]} fov={35} />
-      <pointLight position={[10, 10, 10]} intensity={1.5} />
+      <pointLight position={[10, 10, 10]} intensity={1.5} color="#f0f0f0" />
       <Suspense fallback={null}>
         <WelcomeText />
         <group position-y={4.5}>
@@ -63,7 +63,13 @@ export function PortfolioScene({
         <ScrollHint />
         <Environment files={[hdrMapUrl]} />
       </Suspense>
-      <ContactShadows position={[0, -4.5, 0]} scale={20} blur={2} far={4.5} />
+      <ContactShadows
+        position={[0, -4.5, 0]}
+        opacity={0.4}
+        scale={20}
+        blur={1.75}
+        far={4.5}
+      />
       <OrbitControls
         enablePan={false}
         enableZoom={false}
