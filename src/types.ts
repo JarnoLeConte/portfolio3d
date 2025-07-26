@@ -1,9 +1,9 @@
 export enum PageId {
   Login = "login",
   Shimejis = "shimejis",
-  Flipperkast = "flipperkast",
+  Pinball = "pinball",
   RxMarbles = "rxmarbles",
-  AnimeCoach = "anime.coach",
+  AnimeCoach = "animecoach",
 }
 
 export type StaticPage = {

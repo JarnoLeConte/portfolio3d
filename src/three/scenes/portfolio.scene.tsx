@@ -10,10 +10,10 @@ import { Suspense } from "react";
 import { useSpringValueFromStore } from "~/hooks/use-spring-value-form-store";
 import { getPublicEnv } from "~/lib/env";
 import { useMainStore } from "~/store";
-import { PageTitle } from "../components/page-title";
-import { Laptop } from "../models/laptop.model";
-import { WelcomeText } from "../components/welcome-text";
 import { PageDescription } from "../components/page-description";
+import { PageTitle } from "../components/page-title";
+import { WelcomeText } from "../components/welcome-text";
+import { Laptop } from "../models/laptop.model";
 
 export function PortfolioScene({
   videoSource,

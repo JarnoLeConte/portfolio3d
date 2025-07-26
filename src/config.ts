@@ -19,8 +19,8 @@ const PAGES: StaticPage[] = [
     description: "Playful characters interact with your browser",
   },
   {
-    id: PageId.Flipperkast,
-    videoSource: assetsUrl + "/flipperkast.mp4",
+    id: PageId.Pinball,
+    videoSource: assetsUrl + "/pinball.mp4",
     height: 3000,
     title: "Pinball",
     description: "Game created for Sjoet.xyz",
@@ -34,11 +34,10 @@ const PAGES: StaticPage[] = [
   },
   {
     id: PageId.AnimeCoach,
-    videoSource: assetsUrl + "/anime.coach.mp4",
+    videoSource: assetsUrl + "/animecoach.mp4",
     height: 3000,
     title: "Anime Coach",
-    description:
-      "Custom built AI Neural Network trained for Anime recommendations",
+    description: "AI Neural Network built & trained for Anime recommendations",
   },
 ];
 
