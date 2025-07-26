@@ -8,18 +8,30 @@ export function WelcomeText() {
   const scroll = useSpringValueFromStore((state) => state.scrollTop);
 
   const { opacity } = useSpring({
-    opacity: scroll.to([0, 50], [1, 0]).to((v) => Math.max(0, Math.min(1, v))),
+    opacity: scroll.to([0, 100], [1, 0]).to((v) => Math.max(0, Math.min(1, v))),
   });
 
   return (
-    <AnimatedText
-      rotation-y={Math.PI}
-      position-z={2}
-      fillOpacity={opacity}
-      material-depthWrite={false}
-      fontSize={1}
-    >
-      Portfolio
-    </AnimatedText>
+    <>
+      <AnimatedText
+        rotation-y={Math.PI}
+        position-z={2}
+        fillOpacity={opacity}
+        material-depthWrite={false}
+        fontSize={1}
+      >
+        Portfolio
+      </AnimatedText>
+      <AnimatedText
+        rotation-y={Math.PI}
+        position-z={2}
+        position-y={-1.2}
+        fillOpacity={opacity}
+        material-depthWrite={false}
+        fontSize={0.3}
+      >
+        Jarno Le Conté
+      </AnimatedText>
+    </>
   );
 }

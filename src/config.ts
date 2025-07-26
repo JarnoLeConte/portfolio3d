@@ -7,9 +7,9 @@ const PAGES: StaticPage[] = [
   {
     id: PageId.Login,
     imageSource: "/images/wallpaper.jpg",
-    height: 400,
+    height: 600,
     title: "Jarno Le Conté",
-    description: "Creative Developer",
+    description: "Creative (Web) Application Developer",
   },
   {
     id: PageId.Shimejis,
@@ -22,8 +22,8 @@ const PAGES: StaticPage[] = [
     id: PageId.Pinball,
     videoSource: assetsUrl + "/pinball.mp4",
     height: 3000,
-    title: "Pinball",
-    description: "Game created for Sjoet.xyz",
+    title: "Pinball Game",
+    description: "Created for website Sjoet.xyz",
   },
   {
     id: PageId.RxMarbles,

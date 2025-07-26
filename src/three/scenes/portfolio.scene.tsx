@@ -14,6 +14,7 @@ import { PageDescription } from "../components/page-description";
 import { PageTitle } from "../components/page-title";
 import { WelcomeText } from "../components/welcome-text";
 import { Laptop } from "../models/laptop.model";
+import { ScrollHint } from "../components/scroll-hint";
 
 export function PortfolioScene({
   videoSource,
@@ -33,7 +34,7 @@ export function PortfolioScene({
   // Update the hinge spring based on scroll position (first 200px)
   // Setting an value between 0 and 1
   const hinge = scroll
-    .to([0, 200], [0, 1])
+    .to([0, 500], [0.0, 1])
     .to((v) => Math.max(0, Math.min(1, v)));
 
   return (
@@ -59,6 +60,7 @@ export function PortfolioScene({
             imageSource={imageSource}
           />
         </group>
+        <ScrollHint />
         <Environment files={[hdrMapUrl]} />
       </Suspense>
       <ContactShadows position={[0, -4.5, 0]} scale={20} blur={2} far={4.5} />
