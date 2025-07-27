@@ -16,7 +16,8 @@ const PAGES: StaticPage[] = [
     videoSource: assetsUrl + "/shimejis.mp4",
     height: 3000,
     title: "Shimeji Browser Extension",
-    description: "Playful characters interact with your browser",
+    description:
+      "Characters interact with the browser, installed by 6M users worldwide.",
   },
   {
     id: PageId.Pinball,
@@ -30,7 +31,7 @@ const PAGES: StaticPage[] = [
     videoSource: assetsUrl + "/rxmarbles.mp4",
     height: 2000,
     title: "RxMarbles",
-    description: "Visualisation of RxJS Observables",
+    description: "Real-time visualisation of reactive programming concepts",
   },
   {
     id: PageId.AnimeCoach,
@@ -45,6 +46,14 @@ const PAGES: StaticPage[] = [
     height: 4000,
     title: "Sjoet.xyz",
     description: "Company's website for children's casting shoots",
+  },
+  {
+    id: PageId.LightProjection,
+    videoSource: assetsUrl + "/lightprojection.mp4",
+    height: 4000,
+    title: "Video & Light Projection",
+    description:
+      "Projection map and light control using TouchDesigner on WebRTC video stream",
   },
 ];
 
