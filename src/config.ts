@@ -23,7 +23,7 @@ const PAGES: StaticPage[] = [
     videoSource: assetsUrl + "/pinball.mp4",
     height: 3000,
     title: "Pinball Game",
-    description: "Created in addition to website sjoet.xyz",
+    description: "Add-on for website sjoet.xyz",
   },
   {
     id: PageId.RxMarbles,
@@ -44,7 +44,7 @@ const PAGES: StaticPage[] = [
     videoSource: assetsUrl + "/sjoet.mp4",
     height: 4000,
     title: "Sjoet.xyz",
-    description: "Website for company specialised in children's casting shoots",
+    description: "Company's website for children's casting shoots",
   },
 ];
 
