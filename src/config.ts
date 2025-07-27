@@ -28,7 +28,7 @@ const PAGES: StaticPage[] = [
   {
     id: PageId.RxMarbles,
     videoSource: assetsUrl + "/rxmarbles.mp4",
-    height: 3000,
+    height: 2000,
     title: "RxMarbles",
     description: "Visualisation of RxJS Observables",
   },
@@ -36,8 +36,15 @@ const PAGES: StaticPage[] = [
     id: PageId.AnimeCoach,
     videoSource: assetsUrl + "/animecoach.mp4",
     height: 3000,
-    title: "Anime Coach",
-    description: "AI Neural Network built & trained for Anime recommendations",
+    title: "AI Neural Network",
+    description: "Custom built and trained for Anime recommendations",
+  },
+  {
+    id: PageId.Sjoet,
+    videoSource: assetsUrl + "/sjoet.mp4",
+    height: 4000,
+    title: "Sjoet.xyz",
+    description: "Website for company specialised in children's casting shoots",
   },
 ];
 

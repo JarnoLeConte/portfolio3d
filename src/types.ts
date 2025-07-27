@@ -4,6 +4,7 @@ export enum PageId {
   Pinball = "pinball",
   RxMarbles = "rxmarbles",
   AnimeCoach = "animecoach",
+  Sjoet = "sjoet",
 }
 
 export type StaticPage = {
