@@ -1,7 +1,4 @@
-import { getPublicEnv } from "./lib/env";
 import { DynamicPage, PageId, StaticPage } from "./types";
-
-const { assetsUrl } = getPublicEnv();
 
 const PAGES: StaticPage[] = [
   {
@@ -13,43 +10,43 @@ const PAGES: StaticPage[] = [
   },
   {
     id: PageId.Shimejis,
-    videoSource: assetsUrl + "/shimejis.mp4",
-    height: 3000,
+    videoSource: "/videos/shimejis.mp4",
+    height: 2000,
     title: "Shimeji Browser Extension",
     description:
       "Characters interact with the browser, installed by 6M users worldwide.",
   },
   {
     id: PageId.Pinball,
-    videoSource: assetsUrl + "/pinball.mp4",
-    height: 3000,
+    videoSource: "/videos/pinball.mp4",
+    height: 2500,
     title: "Pinball Game",
     description: "Add-on for website sjoet.xyz",
   },
   {
     id: PageId.RxMarbles,
-    videoSource: assetsUrl + "/rxmarbles.mp4",
+    videoSource: "/videos/rxmarbles.mp4",
     height: 2000,
     title: "RxMarbles",
     description: "Real-time visualisation of reactive programming concepts",
   },
   {
     id: PageId.AnimeCoach,
-    videoSource: assetsUrl + "/animecoach.mp4",
+    videoSource: "/videos/animecoach.mp4",
     height: 3000,
     title: "AI Neural Network",
     description: "Custom built and trained for Anime recommendations",
   },
   {
     id: PageId.Sjoet,
-    videoSource: assetsUrl + "/sjoet.mp4",
+    videoSource: "/videos/sjoet.mp4",
     height: 4000,
     title: "Sjoet.xyz",
-    description: "Company's website for children's casting shoots",
+    description: "Website for children's casting shoots",
   },
   {
     id: PageId.LightProjection,
-    videoSource: assetsUrl + "/lightprojection.mp4",
+    videoSource: "/videos/lightprojection.mp4",
     height: 4000,
     title: "Video & Light Projection",
     description:

@@ -8,7 +8,6 @@ import {
 } from "@react-three/drei";
 import { Suspense } from "react";
 import { useSpringValueFromStore } from "~/hooks/use-spring-value-form-store";
-import { getPublicEnv } from "~/lib/env";
 import { useMainStore } from "~/store";
 import { PageDescription } from "../components/page-description";
 import { PageTitle } from "../components/page-title";
@@ -23,8 +22,7 @@ export function PortfolioScene({
   videoSource?: string;
   imageSource?: string;
 }) {
-  const { assetsUrl } = getPublicEnv();
-  const hdrMapUrl = assetsUrl + "/potsdamer_platz_1k.hdr";
+  const hdrMapUrl = "/hdr/potsdamer_platz_1k.hdr";
 
   const pages = useMainStore((state) => state.pages);
 
