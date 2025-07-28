@@ -86,7 +86,11 @@ export default function Home() {
           />
         </div>
         <Canvas>
-          <PortfolioScene videoSource={videoSource} imageSource={imageSource} />
+          <PortfolioScene
+            page={page}
+            videoSource={videoSource}
+            imageSource={imageSource}
+          />
         </Canvas>
       </div>
     </>

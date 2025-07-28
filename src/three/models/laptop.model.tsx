@@ -1,3 +1,5 @@
+const PATH = "/models/mac-draco.glb";
+
 import { animated, Interpolation, SpringValue } from "@react-spring/three";
 import { useGLTF } from "@react-three/drei";
 import { Suspense, useRef } from "react";
@@ -15,19 +17,20 @@ type GLTFResult = GLTF & {
     Cube008: THREE.Mesh;
     Cube008_1: THREE.Mesh;
     Cube008_2: THREE.Mesh;
+    keyboard: THREE.Mesh;
     Cube002: THREE.Mesh;
     Cube002_1: THREE.Mesh;
     touchbar: THREE.Mesh;
-    keyboard: THREE.Mesh;
   };
   materials: {
     aluminium: THREE.MeshStandardMaterial;
-    touchbar: THREE.MeshStandardMaterial;
-    trackpad: THREE.MeshStandardMaterial;
+    ["matte.001"]: THREE.MeshStandardMaterial;
+    ["screen.001"]: THREE.MeshStandardMaterial;
     keys: THREE.MeshStandardMaterial;
-    "matte.001": THREE.MeshStandardMaterial;
-    "screen.001": THREE.MeshStandardMaterial;
+    trackpad: THREE.MeshStandardMaterial;
+    touchbar: THREE.MeshStandardMaterial;
   };
+  // animations: GLTFAction[]
 };
 
 export function Laptop({
@@ -42,9 +45,7 @@ export function Laptop({
   const group = useRef<THREE.Mesh>(null);
 
   // Load model
-  const { nodes, materials } = useGLTF(
-    "/models/mac-draco.glb"
-  ) as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF(PATH) as GLTF as GLTFResult;
 
   // Interpolate from fraction [0, 1] to real screen rotation
   const screenRotationX = hinge.to([0, 1], [1.575, -0.425]);
@@ -110,3 +111,5 @@ export function Laptop({
     </group>
   );
 }
+
+useGLTF.preload(PATH);

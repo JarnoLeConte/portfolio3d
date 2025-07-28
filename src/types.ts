@@ -6,6 +6,7 @@ export enum PageId {
   AnimeCoach = "animecoach",
   Sjoet = "sjoet",
   LightProjection = "lightprojection",
+  StreamDeck = "streamdeck",
 }
 
 export type StaticPage = {

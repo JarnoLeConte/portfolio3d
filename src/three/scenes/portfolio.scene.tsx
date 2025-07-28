@@ -1,5 +1,6 @@
 "use client";
 
+import { animated, useSpring } from "@react-spring/three";
 import {
   ContactShadows,
   Environment,
@@ -9,16 +10,20 @@ import {
 import { Suspense } from "react";
 import { useSpringValueFromStore } from "~/hooks/use-spring-value-form-store";
 import { useMainStore } from "~/store";
+import { DynamicPage, PageId } from "~/types";
 import { PageDescription } from "../components/page-description";
 import { PageTitle } from "../components/page-title";
 import { ScrollHint } from "../components/scroll-hint";
 import { WelcomeText } from "../components/welcome-text";
 import { Laptop } from "../models/laptop.model";
+import { StreamDeckModel } from "../models/streamdeck.model";
 
 export function PortfolioScene({
+  page,
   videoSource,
   imageSource,
 }: {
+  page: DynamicPage;
   videoSource?: string;
   imageSource?: string;
 }) {
@@ -34,6 +39,50 @@ export function PortfolioScene({
   const hinge = scroll
     .to([0, 500], [0.3, 1])
     .to((v) => Math.max(0, Math.min(1, v)));
+
+  const getLaptopProps = () => {
+    switch (page.id) {
+      case PageId.StreamDeck:
+        return {
+          "position-x": -0.5,
+          "position-z": 0,
+          "rotation-y": 0.2,
+        };
+      default:
+        return {
+          "position-x": 0,
+          "position-y": 0,
+          "position-z": 0,
+          "rotation-x": 0,
+          "rotation-y": 0,
+          "rotation-z": 0,
+        };
+    }
+  };
+
+  const getStreamDeckProps = () => {
+    switch (page.id) {
+      case PageId.StreamDeck:
+        return {
+          "position-x": 3.4,
+          "position-y": 0.17,
+          "position-z": 1.4,
+          "rotation-y": -0.4,
+        };
+      default:
+        return {
+          "position-x": 20,
+          "position-y": 0,
+          "position-z": 0,
+          "rotation-x": 0,
+          "rotation-y": 2,
+          "rotation-z": 0,
+        };
+    }
+  };
+
+  const laptopProps = useSpring(getLaptopProps());
+  const streamDeckProps = useSpring(getStreamDeckProps());
 
   return (
     <>
@@ -51,12 +100,24 @@ export function PortfolioScene({
             <PageDescription key={page.id} page={page} />
           ))}
         </group>
+        {/* Scene Content 3D */}
         <group rotation={[0, Math.PI, 0]} position={[0, -2.5, 0]}>
-          <Laptop
-            hinge={hinge}
-            videoSource={videoSource}
-            imageSource={imageSource}
-          />
+          <animated.group {...laptopProps}>
+            <Laptop
+              hinge={hinge}
+              videoSource={videoSource}
+              imageSource={imageSource}
+            />
+          </animated.group>
+          <animated.group {...streamDeckProps}>
+            <Suspense fallback={null}>
+              <StreamDeckModel
+                scale={0.02}
+                position={[0.5, 0.3, 2.2]}
+                rotation={[-Math.PI / 3, 0, 0]}
+              />
+            </Suspense>
+          </animated.group>
         </group>
         <ScrollHint />
         <Environment files={[hdrMapUrl]} />

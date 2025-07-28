@@ -14,7 +14,7 @@ const PAGES: StaticPage[] = [
     height: 2000,
     title: "Shimeji Browser Extension",
     description:
-      "Characters interact with the browser, installed by 6M users worldwide.",
+      "Over more than 6M users worldwide play with these little characters",
   },
   {
     id: PageId.Pinball,
@@ -34,15 +34,16 @@ const PAGES: StaticPage[] = [
     id: PageId.AnimeCoach,
     videoSource: "/videos/animecoach.mp4",
     height: 3000,
-    title: "AI Neural Network",
-    description: "Custom built and trained for Anime recommendations",
+    title: "Anime AI",
+    description: "Neural Network built & trained for Anime recommendations",
   },
   {
     id: PageId.Sjoet,
     videoSource: "/videos/sjoet.mp4",
     height: 4000,
     title: "Sjoet.xyz",
-    description: "Website for children's casting shoots",
+    description:
+      "Website built for company specialised in children's casting shoots",
   },
   {
     id: PageId.LightProjection,
@@ -51,6 +52,14 @@ const PAGES: StaticPage[] = [
     title: "Video & Light Projection",
     description:
       "Projection map and light control using TouchDesigner on WebRTC video stream",
+  },
+
+  {
+    id: PageId.StreamDeck,
+    imageSource: "/images/streamdeck.png",
+    height: 1000,
+    title: "Plug-ins",
+    description: "Developed for Elgato Stream Deck",
   },
 ];
 
