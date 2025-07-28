@@ -58,8 +58,8 @@ const PAGES: StaticPage[] = [
     id: PageId.StreamDeck,
     imageSource: "/images/streamdeck.png",
     height: 1000,
-    title: "Plug-ins",
-    description: "Developed for Elgato Stream Deck",
+    title: "Stream Deck",
+    description: "Plug-ins developed in Swift for Elgato Stream Deck",
   },
 ];
 
