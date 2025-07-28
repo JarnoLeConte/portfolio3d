@@ -17,6 +17,7 @@ import { ScrollHint } from "../components/scroll-hint";
 import { WelcomeText } from "../components/welcome-text";
 import { Laptop } from "../models/laptop.model";
 import { StreamDeckModel } from "../models/streamdeck.model";
+import { RaspberryPiModel } from "../models/raspberry.model";
 
 export function PortfolioScene({
   page,
@@ -43,6 +44,7 @@ export function PortfolioScene({
   const getLaptopProps = () => {
     switch (page.id) {
       case PageId.StreamDeck:
+      case PageId.GallerTv:
         return {
           "position-x": -0.5,
           "position-z": 0,
@@ -64,7 +66,7 @@ export function PortfolioScene({
     switch (page.id) {
       case PageId.StreamDeck:
         return {
-          "position-x": 3.4,
+          "position-x": 2.9,
           "position-y": 0.17,
           "position-z": 1.4,
           "rotation-y": -0.4,
@@ -81,8 +83,32 @@ export function PortfolioScene({
     }
   };
 
+  const getRaspberryPiProps = () => {
+    switch (page.id) {
+      case PageId.GallerTv:
+        return {
+          "position-x": 3,
+          "position-y": 1.4,
+          "position-z": 5,
+          "rotation-x": -0.9,
+          "rotation-y": -0.5,
+          "rotation-z": 0.4,
+        };
+      default:
+        return {
+          "position-x": 20,
+          "position-y": 0.8,
+          "position-z": 5,
+          "rotation-x": -0.9,
+          "rotation-y": -0.5,
+          "rotation-z": 0.4,
+        };
+    }
+  };
+
   const laptopProps = useSpring(getLaptopProps());
   const streamDeckProps = useSpring(getStreamDeckProps());
+  const raspberryPiProps = useSpring(getRaspberryPiProps());
 
   return (
     <>
@@ -116,6 +142,11 @@ export function PortfolioScene({
                 position={[0.5, 0.3, 2.2]}
                 rotation={[-Math.PI / 3, 0, 0]}
               />
+            </Suspense>
+          </animated.group>
+          <animated.group {...raspberryPiProps}>
+            <Suspense fallback={null}>
+              <RaspberryPiModel scale={0.033} />
             </Suspense>
           </animated.group>
         </group>

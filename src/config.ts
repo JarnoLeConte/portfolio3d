@@ -13,15 +13,14 @@ const PAGES: StaticPage[] = [
     videoSource: "/videos/shimejis.mp4",
     height: 2000,
     title: "Shimeji Browser Extension",
-    description:
-      "Over more than 6M users worldwide play with these little characters",
+    description: "Playful little characters interact with your web browser",
   },
   {
     id: PageId.Pinball,
     videoSource: "/videos/pinball.mp4",
     height: 2500,
     title: "Pinball Game",
-    description: "Add-on for website sjoet.xyz",
+    description: "Add-on for sjoet.xyz",
   },
   {
     id: PageId.RxMarbles,
@@ -42,24 +41,29 @@ const PAGES: StaticPage[] = [
     videoSource: "/videos/sjoet.mp4",
     height: 4000,
     title: "Sjoet.xyz",
-    description:
-      "Website built for company specialised in children's casting shoots",
+    description: "Website built for children's casting shoots",
   },
   {
     id: PageId.LightProjection,
     videoSource: "/videos/lightprojection.mp4",
     height: 4000,
-    title: "Video & Light Projection",
+    title: "Video & Light",
     description:
-      "Projection map and light control using TouchDesigner on WebRTC video stream",
+      "WebRTC video projection mapping and light control using TouchDesigner",
   },
-
   {
     id: PageId.StreamDeck,
     imageSource: "/images/streamdeck.png",
     height: 1000,
     title: "Stream Deck",
-    description: "Plug-ins developed in Swift for Elgato Stream Deck",
+    description: "Plug-ins for Elgato Stream Deck developed in Swift",
+  },
+  {
+    id: PageId.GallerTv,
+    imageSource: "/images/gallerytv.png",
+    height: 1000,
+    title: "Gallery TV",
+    description: "Remotely set wallpaper on TV screen using Raspberry Pi",
   },
 ];
 
