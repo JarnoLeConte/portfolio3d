@@ -18,6 +18,7 @@ import { WelcomeText } from "../components/welcome-text";
 import { Laptop } from "../models/laptop.model";
 import { StreamDeckModel } from "../models/streamdeck.model";
 import { RaspberryPiModel } from "../models/raspberry.model";
+import { GamepadModel } from "../models/gamepad.model";
 
 export function PortfolioScene({
   page,
@@ -93,6 +94,17 @@ export function PortfolioScene({
           "rotation-x": -0.9,
           "rotation-y": -0.5,
           "rotation-z": 0.4,
+          scale: 1,
+        };
+      case PageId.ProjectDiva:
+        return {
+          "position-x": 3.8,
+          "position-y": 0.2,
+          "position-z": 8,
+          "rotation-x": -0.9,
+          "rotation-y": -0.5,
+          "rotation-z": 0.4,
+          scale: 0.8,
         };
       default:
         return {
@@ -102,6 +114,30 @@ export function PortfolioScene({
           "rotation-x": -0.9,
           "rotation-y": -0.5,
           "rotation-z": 0.4,
+          scale: 1,
+        };
+    }
+  };
+
+  const getGamepadProps = () => {
+    switch (page.id) {
+      case PageId.ProjectDiva:
+        return {
+          "position-x": 0,
+          "position-y": 1.3,
+          "position-z": 13,
+          "rotation-x": -0,
+          "rotation-y": 3.13,
+          "rotation-z": 0,
+        };
+      default:
+        return {
+          "position-x": 0,
+          "position-y": 0.5,
+          "position-z": 24,
+          "rotation-x": -0.3,
+          "rotation-y": 3.13,
+          "rotation-z": 0,
         };
     }
   };
@@ -109,6 +145,7 @@ export function PortfolioScene({
   const laptopProps = useSpring(getLaptopProps());
   const streamDeckProps = useSpring(getStreamDeckProps());
   const raspberryPiProps = useSpring(getRaspberryPiProps());
+  const gamepadProps = useSpring(getGamepadProps());
 
   return (
     <>
@@ -147,6 +184,11 @@ export function PortfolioScene({
           <animated.group {...raspberryPiProps}>
             <Suspense fallback={null}>
               <RaspberryPiModel scale={0.033} />
+            </Suspense>
+          </animated.group>
+          <animated.group {...gamepadProps}>
+            <Suspense fallback={null}>
+              <GamepadModel scale={10} />
             </Suspense>
           </animated.group>
         </group>

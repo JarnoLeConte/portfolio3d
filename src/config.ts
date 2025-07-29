@@ -54,16 +54,24 @@ const PAGES: StaticPage[] = [
   {
     id: PageId.StreamDeck,
     imageSource: "/images/streamdeck.png",
-    height: 1000,
+    height: 600,
     title: "Stream Deck",
     description: "Plug-ins for Elgato Stream Deck developed in Swift",
   },
   {
     id: PageId.GallerTv,
     imageSource: "/images/gallerytv.png",
-    height: 1000,
+    height: 600,
     title: "Gallery TV",
     description: "Remotely set wallpaper on TV screen using Raspberry Pi",
+  },
+  {
+    id: PageId.ProjectDiva,
+    videoSource: "/videos/projectdiva.mp4",
+    height: 4000,
+    title: "AI Gamebot",
+    description:
+      "Virtual idol plays rhythm game with user-requested songs on livestream",
   },
 ];
 
