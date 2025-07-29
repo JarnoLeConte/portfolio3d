@@ -20,8 +20,8 @@ export default function Home() {
   const [objectUrls, setObjectUrls] = useState<Record<string, string>>({});
 
   const page = pages[pageIndex];
-  const videoSource = objectUrls[page?.id];
-  const imageSource = page?.imageSource;
+  const videoSource = page?.videoSource ? objectUrls[page.id] : undefined;
+  const imageSource = page?.imageSource ? objectUrls[page.id] : undefined;
 
   const onScroll = (e: any) => {
     setScrollTop(e.target?.scrollTop ?? 0);
@@ -46,8 +46,9 @@ export default function Home() {
 
     (async () => {
       for (const page of pages) {
-        if (page.videoSource) {
-          await fetch(page.videoSource)
+        const source = page.videoSource || page.imageSource;
+        if (source) {
+          await fetch(source)
             .then((res) => res.blob())
             .then((blob) => {
               // Create an object URL for the video blob
