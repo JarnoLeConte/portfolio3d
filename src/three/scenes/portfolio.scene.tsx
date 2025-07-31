@@ -67,9 +67,9 @@ export function PortfolioScene({
     switch (page.id) {
       case PageId.StreamDeck:
         return {
-          "position-x": 2.9,
-          "position-y": 0.17,
-          "position-z": 1.4,
+          "position-x": 1.8,
+          "position-y": 1.17,
+          "position-z": 7.4,
           "rotation-y": -0.4,
         };
       default:

@@ -32,7 +32,7 @@ export function PageTitle({ page }: { page: DynamicPage }) {
       rotation-y={Math.PI}
       position-y={y}
       scale={scale}
-      color="#777"
+      color="#aaa"
       fillOpacity={opacity}
       material-depthWrite={false}
       fontSize={0.48}

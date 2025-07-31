@@ -17,12 +17,12 @@ export function ScrollHint() {
     <group position-y={-7} position-z={2}>
       <AnimatedText
         rotation-y={Math.PI}
-        color="#777"
+        color="#aaa"
         material-depthWrite={false}
         fillOpacity={opacity}
         fontSize={0.3}
       >
-        Scroll down to explore all projects
+        Scroll down to explore projects
       </AnimatedText>
     </group>
   );
