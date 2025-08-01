@@ -41,7 +41,15 @@ const PAGES: StaticPage[] = [
     videoSource: "/videos/sjoet.mp4",
     height: 4000,
     title: "Sjoet.xyz",
-    description: "Website built for children's casting shoots",
+    description: "Custom-made website for children's casting shoots",
+  },
+  {
+    id: PageId.Websites,
+    videoSource: "/videos/websites.mp4",
+    height: 4000,
+    title: "Webdesign & Development",
+    description:
+      "More custom-made websites and Content Management Systems (CMS)",
   },
   {
     id: PageId.LightProjection,
@@ -51,6 +59,7 @@ const PAGES: StaticPage[] = [
     description:
       "WebRTC video projection mapping and light control using TouchDesigner",
   },
+
   {
     id: PageId.StreamDeck,
     imageSource: "/images/streamdeck.png",
@@ -65,6 +74,7 @@ const PAGES: StaticPage[] = [
   //   title: "Gallery TV",
   //   description: "Remotely set wallpaper on TV screen using Raspberry Pi",
   // },
+
   {
     id: PageId.ProjectDiva,
     videoSource: "/videos/projectdiva.mp4",
