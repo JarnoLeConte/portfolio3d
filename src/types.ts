@@ -10,6 +10,7 @@ export enum PageId {
   GallerTv = "gallertv",
   ProjectDiva = "projectdiva",
   Websites = "websites",
+  Surelock = "surelock",
 }
 
 export type StaticPage = {

@@ -8,6 +8,7 @@ const PAGES: StaticPage[] = [
     title: "",
     description: "",
   },
+
   {
     id: PageId.Shimejis,
     videoSource: "/videos/shimejis.mp4",
@@ -39,17 +40,9 @@ const PAGES: StaticPage[] = [
   {
     id: PageId.Sjoet,
     videoSource: "/videos/sjoet.mp4",
-    height: 4000,
+    height: 3600,
     title: "Sjoet.xyz",
     description: "Custom-made website for children's casting shoots",
-  },
-  {
-    id: PageId.Websites,
-    videoSource: "/videos/websites.mp4",
-    height: 4000,
-    title: "Webdesign & Development",
-    description:
-      "More custom-made websites and Content Management Systems (CMS)",
   },
   {
     id: PageId.LightProjection,
@@ -59,14 +52,23 @@ const PAGES: StaticPage[] = [
     description:
       "WebRTC video projection mapping and light control using TouchDesigner",
   },
-
   {
-    id: PageId.StreamDeck,
-    imageSource: "/images/streamdeck.png",
-    height: 900,
-    title: "Stream Deck",
-    description: "Plug-ins for Elgato Stream Deck developed in Swift",
+    id: PageId.Surelock,
+    videoSource: "/videos/surelock.mp4",
+    height: 4000,
+    title: "@Surelock",
+    description:
+      "Full stack web application development at Surelock IT security services",
   },
+  {
+    id: PageId.Websites,
+    videoSource: "/videos/websites.mp4",
+    height: 4000,
+    title: "Webdesign & Development",
+    description:
+      "More custom-made websites with Content Management System (CMS)",
+  },
+
   // {
   //   id: PageId.GallerTv,
   //   imageSource: "/images/gallerytv.png",
@@ -74,7 +76,13 @@ const PAGES: StaticPage[] = [
   //   title: "Gallery TV",
   //   description: "Remotely set wallpaper on TV screen using Raspberry Pi",
   // },
-
+  {
+    id: PageId.StreamDeck,
+    imageSource: "/images/streamdeck.png",
+    height: 900,
+    title: "Stream Deck",
+    description: "Plug-ins for Elgato Stream Deck developed in Swift",
+  },
   {
     id: PageId.ProjectDiva,
     videoSource: "/videos/projectdiva.mp4",
