@@ -16,18 +16,18 @@ export function WelcomeText() {
       <AnimatedText
         rotation-y={Math.PI}
         position-z={2}
-        position-y={+0.23}
+        position-y={-1.8}
         color="#aaa"
         fillOpacity={opacity}
         material-depthWrite={false}
         fontSize={0.3}
       >
-        Jarno Le Conté
+        Portfolio by Jarno Le Conté
       </AnimatedText>
       <AnimatedText
         rotation-y={Math.PI}
         position-z={2}
-        position-y={-0.8}
+        position-y={-0.6}
         color="#aaa"
         fillOpacity={opacity}
         material-depthWrite={false}
@@ -35,7 +35,7 @@ export function WelcomeText() {
       >
         Creative Developer
       </AnimatedText>
-      <AnimatedText
+      {/* <AnimatedText
         rotation-y={Math.PI}
         position-z={2}
         position-y={-1.9}
@@ -45,7 +45,7 @@ export function WelcomeText() {
         fontSize={0.3}
       >
         About Me | Github | LinkedIn
-      </AnimatedText>
+      </AnimatedText> */}
     </group>
   );
 }
